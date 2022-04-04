@@ -1,5 +1,7 @@
 import 'package:tugas_wallpaper_flutter/model/categories_model.dart';
 
+String apiKEY = "563492ad6f917000010000012d7d7730d1304dfa971084f54d7be6cf";
+
 List<CategorieModel> getCategories() {
   List<CategorieModel> categories = [];
   CategorieModel categorieModel = new CategorieModel();
