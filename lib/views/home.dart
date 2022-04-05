@@ -72,18 +72,21 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Expanded(
                         child: TextField(
+                          controller: searchController,
                       decoration: InputDecoration(
                           hintText: "search wallpapers",
                           border: InputBorder.none),
                     )),
-                    GestureDetector(
+                    InkWell(
                         onTap: () {
-                          Navigator.push(
+                          if (searchController.text != "") {
+                            Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Search(
                                           searchQuery: searchController.text,
                                         )));
+                          }
                         },
                         child: Container(child: Icon(Icons.search)))
                   ],
