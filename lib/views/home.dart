@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:tugas_wallpaper_flutter/data/data.dart';
 import 'package:tugas_wallpaper_flutter/model/categories_model.dart';
 import 'package:tugas_wallpaper_flutter/model/wallpaper_model.dart';
+import 'package:tugas_wallpaper_flutter/views/categorie.dart';
 import 'package:tugas_wallpaper_flutter/views/search.dart';
 import 'package:tugas_wallpaper_flutter/widgets/widget.dart';
 import 'package:http/http.dart' as http;
@@ -72,12 +73,12 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Expanded(
                         child: TextField(
-                          controller: searchController,
+                      controller: searchController,
                       decoration: InputDecoration(
                           hintText: "search wallpapers",
                           border: InputBorder.none),
                     )),
-                    InkWell(
+                    GestureDetector(
                         onTap: () {
                           if (searchController.text != "") {
                             Navigator.push(
@@ -126,34 +127,44 @@ class CategoriesTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(right: 4),
-      child: Stack(
-        children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              imgUrls!,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Categorie(
+                      categories: title,
+                    )));
+      },
+      child: Container(
+        margin: EdgeInsets.only(right: 4),
+        child: Stack(
+          children: <Widget>[
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                imgUrls!,
+                height: 50,
+                width: 100,
+                fit: BoxFit.cover,
+              ),
+            ),
+            Container(
               height: 50,
               width: 100,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Container(
-            height: 50,
-            width: 100,
-            alignment: Alignment.center,
-            color: Colors.black26,
-            child: Text(
-              title!,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Overpass'),
-            ),
-          )
-        ],
+              alignment: Alignment.center,
+              color: Colors.black26,
+              child: Text(
+                title!,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'Overpass'),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

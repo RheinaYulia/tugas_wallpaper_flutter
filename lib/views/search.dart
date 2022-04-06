@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 class Search extends StatefulWidget {
   final String? searchQuery;
-  
+
   Search({@required this.searchQuery});
 
   @override
@@ -52,7 +52,7 @@ class _SearchState extends State<Search> {
       appBar: AppBar(
         title: brandName(),
         elevation: 0.0,
-      actions: <Widget>[
+        actions: <Widget>[
           Container(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Icon(
@@ -87,7 +87,14 @@ class _SearchState extends State<Search> {
                     )),
                     GestureDetector(
                         onTap: () {
-                          getSearchWallpaper(searchController.text);
+                          if (searchController.text != "") {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Search(
+                                          searchQuery: searchController.text,
+                                        )));
+                          }
                         },
                         child: Container(child: Icon(Icons.search)))
                   ],
